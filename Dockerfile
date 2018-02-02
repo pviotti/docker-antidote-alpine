@@ -15,7 +15,7 @@ ENV HANDOFF_PORT="8099" \
 RUN set -xe \
     && apk --no-cache --update upgrade busybox musl \
     && apk --no-cache --update add bash coreutils git curl build-base  \ 
-    && apk --no-cache --update iptables \ 
+    && apk --no-cache --update add iptables \ 
     && cd /tmp \
     && git clone $ANTIDOTE_REPO \
     && cd antidote \
