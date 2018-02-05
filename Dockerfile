@@ -14,7 +14,7 @@ ENV HANDOFF_PORT="8099" \
  
 RUN set -xe \
     && apk --no-cache --update upgrade busybox musl \
-    && apk --no-cache --update add bash coreutils git curl build-base  \ 
+    && apk --no-cache add bash coreutils git curl build-base  \ 
     && cd /tmp \
     && git clone $ANTIDOTE_REPO \
     && cd antidote \
@@ -22,6 +22,7 @@ RUN set -xe \
     && make rel \
     && cp -R _build/default/rel/antidote /opt/ \
     && sed -e '$i,{kernel, [{inet_dist_listen_min, 9100}, {inet_dist_listen_max, 9100}]}' /tmp/antidote/_build/default/rel/antidote/releases/0.0.1/sys.config > /opt/antidote/releases/0.0.1/sys.config \
+    && apk del git curl \
     && rm -rf /tmp/antidote /var/cache/apk/*
 
 ADD ./start_and_attach.sh /opt/antidote/
