@@ -23,6 +23,7 @@ RUN set -xe \
     && make rel \
     && cp -R _build/default/rel/antidote /opt/ \
     && sed -e '$i,{kernel, [{inet_dist_listen_min, 9100}, {inet_dist_listen_max, 9100}]}' /tmp/antidote/_build/default/rel/antidote/releases/0.0.1/sys.config > /opt/antidote/releases/0.0.1/sys.config \
+    && sed -i '7i{ring_creation_size, 8},' /opt/antidote/releases/0.0.1/sys.config \
     && apk del git curl \
     && rm -rf /tmp/antidote /var/cache/apk/*
 
