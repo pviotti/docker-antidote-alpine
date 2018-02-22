@@ -17,4 +17,4 @@ $ docker run --rm -it -p "8087:8087" pviotti/antidote-alpine
 
 ## License
 
-License: WTFPL.  
+WTFPL.  
